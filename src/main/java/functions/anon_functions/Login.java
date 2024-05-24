@@ -1,9 +1,9 @@
 package functions.anon_functions;
 
-import user.All_users;
-import user.User;
 import database.AuditDatabase;
 import exception.UserLoginException;
+import user.All_users;
+import user.User;
 
 public class Login {
     public static User returned(User user, String username, String password) {

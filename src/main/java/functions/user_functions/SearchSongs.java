@@ -2,9 +2,9 @@ package functions.user_functions;
 
 import audiolibrary.allSongs.AllSongs;
 import audiolibrary.song.Song;
-import user.User;
 import database.AuditDatabase;
 import java.util.List;
+import user.User;
 
 public class SearchSongs {
     public static void returned(User user, String command, String filter) {

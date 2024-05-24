@@ -1,9 +1,9 @@
 package functions.admin_functions;
 
-import functions.BaseFunctions;
-import functions.user_functions.UserFunctions;
 import database.AuditDatabase;
 import exception.UnknownCommandException;
+import functions.BaseFunctions;
+import functions.user_functions.UserFunctions;
 import user.User;
 
 public class AdminFunctions extends UserFunctions {
@@ -38,7 +38,8 @@ public class AdminFunctions extends UserFunctions {
     protected int getChoice(String[] values) {
         int choice = 0;
         if (values[0].equals("promote")) choice = 7;
-        if (values[0].equals("create") && values[1].equals("song") && values.length == 5) choice = 8;
+        if (values[0].equals("create") && values[1].equals("song") && values.length == 5)
+            choice = 8;
         if (values[0].equals("audit")) choice = 9;
         if (choice == 0) {
             choice = super.getChoice(values);

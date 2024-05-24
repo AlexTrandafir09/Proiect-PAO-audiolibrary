@@ -4,11 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Getter;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import lombok.Getter;
 
 @Getter
 public class Song implements ISong {
@@ -32,13 +31,14 @@ public class Song implements ISong {
         this.artist = artist;
         this.launchYear = launchYear;
     }
+
     @JsonCreator
     public Song(
             @JsonProperty("id") int id,
             @JsonProperty("name") String name,
             @JsonProperty("artist") String artist,
             @JsonProperty("launch_year") int launchYear) {
-        this.id=id;
+        this.id = id;
         this.name = name;
         this.artist = artist;
         this.launchYear = launchYear;
@@ -59,15 +59,18 @@ public class Song implements ISong {
                 + this.getId()
                 + " ] ";
     }
+
     public static int getLastSongId() {
         int lastId = -1;
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            File file = new File("C:\\Users\\trand\\IdeaProjects\\Proiect-PAO-audiolibrary\\src\\main\\resources\\songs.json");
+            File file =
+                    new File(
+                            "C:\\Users\\trand\\IdeaProjects\\Proiect-PAO-audiolibrary\\src\\main\\r"
+                                    + "esources\\songs.json");
             if (file.exists()) {
-                List<Song> songs = mapper.readValue(file, new TypeReference<>() {
-                });
+                List<Song> songs = mapper.readValue(file, new TypeReference<>() {});
                 if (!songs.isEmpty()) {
                     lastId = songs.getLast().getId();
                 }

@@ -1,10 +1,10 @@
 package functions.user_functions;
 
 import audiolibrary.playlist.Playlist;
-import user.User;
 import database.AuditDatabase;
 import exception.AlreadyExistingPlaylistException;
 import java.util.ArrayList;
+import user.User;
 
 public class AddPlaylist {
     public static User returned(String name, User user) {

@@ -1,10 +1,10 @@
 package database;
 
-import user.Roles;
-import user.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import user.Roles;
+import user.User;
 
 public class UsersDatabase {
     public static void create() {

@@ -1,8 +1,8 @@
 package functions.user_functions;
 
+import database.AuditDatabase;
 import user.Roles;
 import user.User;
-import database.AuditDatabase;
 
 public class Logout {
     public static User returned(User user1) {

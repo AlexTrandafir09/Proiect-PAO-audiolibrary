@@ -3,10 +3,9 @@ package functions;
 import database.AuditDatabase;
 import exception.UnknownCommandException;
 import functions.user_functions.*;
+import java.util.ArrayList;
 import user.Roles;
 import user.User;
-
-import java.util.ArrayList;
 
 public abstract class BaseFunctions {
     protected abstract int getChoice(String[] values);

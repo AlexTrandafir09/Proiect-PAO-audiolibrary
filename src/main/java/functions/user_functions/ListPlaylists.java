@@ -1,8 +1,8 @@
 package functions.user_functions;
 
 import audiolibrary.playlist.Playlist;
-import user.User;
 import database.AuditDatabase;
+import user.User;
 
 public class ListPlaylists {
     public static void returned(User user) {

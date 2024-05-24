@@ -1,10 +1,10 @@
 package functions.admin_functions;
 
+import database.UsersDatabase;
+import exception.UserNotExistentException;
 import user.All_users;
 import user.Roles;
 import user.User;
-import database.UsersDatabase;
-import exception.UserNotExistentException;
 
 public class Promote {
     public static User returned(String[] values, User user) {

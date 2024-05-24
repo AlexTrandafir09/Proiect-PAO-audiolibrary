@@ -1,12 +1,11 @@
 package database;
 
-import user.User;
 import functions.user_functions.Pagination;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
+import user.User;
 
 public class AuditDatabase {
     public static void create() {
@@ -55,8 +54,8 @@ public class AuditDatabase {
 
     public static void print(String user) {
         try (Connection connection =
-                     DriverManager.getConnection(
-                             "jdbc:mysql://localhost:3306/PAO-PROIECT", "user", "1234")) {
+                DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/PAO-PROIECT", "user", "1234")) {
             Statement statement = connection.createStatement();
             ResultSet resultSet;
             String sql = "SELECT * FROM audit WHERE user = '" + user + "'";
@@ -77,5 +76,4 @@ public class AuditDatabase {
             System.out.println(e.getMessage());
         }
     }
-
 }

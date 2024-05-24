@@ -1,9 +1,9 @@
 package functions.anon_functions;
 
-import user.User;
 import database.AuditDatabase;
 import exception.InvalidCommandUsageException;
 import exception.UnknownCommandException;
+import user.User;
 
 public class AnonFunctions {
     public static User functions(User user, String[] values) {

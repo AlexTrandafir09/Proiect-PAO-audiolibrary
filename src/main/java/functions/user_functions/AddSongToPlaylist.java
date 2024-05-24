@@ -1,14 +1,15 @@
 package functions.user_functions;
+
 import audiolibrary.allSongs.AllSongs;
 import audiolibrary.playlist.Playlist;
 import audiolibrary.song.Song;
-import user.User;
 import database.AuditDatabase;
 import exception.NonexistentSongException;
 import exception.PlaylistNotExistentException;
 import exception.SongsAlreadyIsInPlaylistException;
 import java.util.Arrays;
 import java.util.List;
+import user.User;
 
 public class AddSongToPlaylist {
 

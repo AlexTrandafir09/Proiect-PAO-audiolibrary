@@ -1,9 +1,9 @@
 package functions.anon_functions;
 
-import user.All_users;
-import user.User;
 import database.AuditDatabase;
 import exception.UserRegistrationException;
+import user.All_users;
+import user.User;
 
 public class Register {
     public static User returned(User user, String name, String password) {

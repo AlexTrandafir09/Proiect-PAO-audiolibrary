@@ -59,8 +59,7 @@ public class Pagination<T> {
                 expectedCommand = "list playlists " + (currentPage + 1);
                 expectedCommand1 = null;
                 System.out.println("list playlists " + (currentPage + 1));
-            }
-            else {
+            } else {
                 break;
             }
 

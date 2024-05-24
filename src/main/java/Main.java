@@ -1,12 +1,12 @@
-import functions.user_functions.UserFunctions;
-import functions.admin_functions.AdminFunctions;
-import functions.anon_functions.AnonFunctions;
-import user.Roles;
-import user.User;
 import command.Command;
 import database.AuditDatabase;
 import database.UsersDatabase;
+import functions.admin_functions.AdminFunctions;
+import functions.anon_functions.AnonFunctions;
+import functions.user_functions.UserFunctions;
 import java.util.Objects;
+import user.Roles;
+import user.User;
 
 public class Main {
     public static void main(String[] args) {

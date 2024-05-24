@@ -2,7 +2,6 @@ package functions.admin_functions;
 
 import audiolibrary.allSongs.AllSongs;
 import audiolibrary.song.Song;
-import user.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import database.AuditDatabase;
@@ -11,15 +10,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import user.User;
 
 public class CreateSong {
     private static final String JSON_FILE_PATH =
             "C:\\Users\\trand\\IdeaProjects\\Proiect-PAO-audiolibrary\\src\\main\\r"
                     + "esources\\songs.json";
 
-    public static User returned(User user,String songName,String songArtist,String songLaunchYear ) {
+    public static User returned(
+            User user, String songName, String songArtist, String songLaunchYear) {
         try {
-            int year=Integer.parseInt(songLaunchYear);
+            int year = Integer.parseInt(songLaunchYear);
             Song song = new Song(songName, songArtist, year);
 
             AllSongs allSongs = AllSongs.getInstance();
@@ -39,7 +40,7 @@ public class CreateSong {
 
             songs.add(song);
             mapper.writeValue(file, songs);
-            System.out.println("Added "+ songName+" by "+songArtist+" to the library.");
+            System.out.println("Added " + songName + " by " + songArtist + " to the library.");
             AuditDatabase.insert(user, "create song", true);
             return user;
 
