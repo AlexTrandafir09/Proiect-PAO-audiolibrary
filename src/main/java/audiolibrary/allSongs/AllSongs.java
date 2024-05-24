@@ -1,5 +1,7 @@
-package audiolibrary;
+package audiolibrary.allSongs;
 
+import audiolibrary.song.Song;
+import audiolibrary.song.SongLoaderJson;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ import java.util.List;
 
 @Getter
 
-public class AllSongs {
+public class AllSongs implements IAllSongs {
     private static AllSongs instance = null;
     private List<Song> songs;
 

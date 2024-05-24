@@ -12,7 +12,7 @@ public class All_users {
     private List<User> userList;
 
     private All_users() {
-        userList = UsersDatabase.getAllUsers();
+        userList = UsersDatabase.getUsers();
     }
 
     public static All_users getInstance() {
@@ -28,8 +28,8 @@ public class All_users {
 
     public void addUser(User user) {
         userList.add(user);
-        AuditDatabase.Insert(user,"register",true);
-        UsersDatabase.Insert(user);
+        AuditDatabase.insert(user,"register",true);
+        UsersDatabase.insert(user);
     }
 
 

@@ -1,6 +1,7 @@
-package audiolibrary;
+package audiolibrary.playlist;
 
 
+import audiolibrary.song.Song;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -8,12 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+@Getter
 @Builder
-public class Playlist {
+public class Playlist implements IPlaylist {
     private static int lastId = 0;
-    @Getter private int id;
-    @Getter private String name;
-    @Getter private List<Song> songs;
+    private int id;
+    private String name;
+    private List<Song> songs;
 
     public static PlaylistBuilder builder() {
         return new PlaylistBuilder();

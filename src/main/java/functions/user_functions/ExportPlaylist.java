@@ -1,7 +1,7 @@
 package functions.user_functions;
 
-import audiolibrary.Playlist;
-import audiolibrary.Song;
+import audiolibrary.playlist.Playlist;
+import audiolibrary.song.Song;
 import authentification.User;
 import com.opencsv.CSVWriter;
 import database.AuditDatabase;
@@ -32,11 +32,11 @@ public class ExportPlaylist {
             }
             csvWriter.close();
             System.out.println("Successfully exported.");
-            AuditDatabase.Insert(user,"Export playlist",true);
+            AuditDatabase.insert(user,"Export playlist",true);
 
         }
         catch (PlaylistNotExistentException | IOException e) {
-            AuditDatabase.Insert(user,"Export playlist."+e.getMessage(),false);
+            AuditDatabase.insert(user,"Export playlist."+e.getMessage(),false);
             System.out.println(e.getMessage());
         }
     }

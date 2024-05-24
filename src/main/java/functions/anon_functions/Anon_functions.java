@@ -5,13 +5,9 @@ import database.AuditDatabase;
 import exception.InvalidCommandUsageException;
 import exception.UnknownCommandException;
 
-import java.util.Scanner;
 
 public class Anon_functions {
-    public static User functions(User user){
-        Scanner sc = new Scanner(System.in);
-        String sequence = sc.nextLine();
-        String[] values = sequence.split(" ");
+    public static User functions(User user,String[] values){
         int choice=getChoice(values);
         switch (choice) {
             case 0: {
@@ -28,7 +24,7 @@ public class Anon_functions {
 
                 }
                 catch (InvalidCommandUsageException | UnknownCommandException e) {
-                    AuditDatabase.Insert(user, e.getMessage(), false);
+                    AuditDatabase.insert(user, e.getMessage(), false);
                     System.out.println(e.getMessage());
                     return user;
                 }

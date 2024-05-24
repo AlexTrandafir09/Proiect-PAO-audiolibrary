@@ -16,7 +16,7 @@ public class Register {
             return new_user;
         } catch (UserRegistrationException e) {
             System.out.println(e.getMessage());
-            AuditDatabase.Insert(user,"register",false);
+            AuditDatabase.insert(user,"register",false);
             return user;
         }
     }

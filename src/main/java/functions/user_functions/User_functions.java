@@ -1,21 +1,19 @@
 package functions.user_functions;
 
+
+import authentification.Roles;
 import authentification.User;
 import database.AuditDatabase;
 import exception.UnknownCommandException;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class User_functions {
-    public static User functions(User user) {
+    public static User functions(User user, String[] values) {
         if (user.getPlaylists() == null) {
             user.setPlaylists(new ArrayList<>());
         }
-        Scanner sc = new Scanner(System.in);
-        String sequence = sc.nextLine();
-        String[] values = sequence.split(" ");
-        int choice = getChoice(values, sequence);
+        int choice = getChoice(values);
         switch (choice) {
             case 1: { ///search
                 SearchSongs.returned(user, values[1], values[2]);
@@ -41,9 +39,11 @@ public class User_functions {
             }
             default: {
                 try {
+                    if(user.getRole()== Roles.admin_user)
+                        return null;
                     throw new UnknownCommandException();
                 } catch (UnknownCommandException e) {
-                    AuditDatabase.Insert(user, e.getMessage(), false);
+                    AuditDatabase.insert(user, e.getMessage(), false);
                     System.out.println(e.getMessage());
                     return user;
                 }
@@ -53,7 +53,7 @@ public class User_functions {
 
     }
 
-    private static int getChoice(String[] values, String sequence) {
+    private static int getChoice(String[] values) {
         int choice = 0;
         if (values[0].equals("search") && (values[1].equals("name") || values[1].equals("author")))
             choice = 1;
@@ -61,7 +61,7 @@ public class User_functions {
             choice = 2;
         if (values[0].equals("add") && (values[1].equals("byName") || values[1].equals("byId")))
             choice = 3;
-        if (sequence.equals("logout"))
+        if (values[0].equals("logout"))
             choice = 4;
         if (values[0].equals("list") && values[1].equals("playlists"))
             choice = 5;

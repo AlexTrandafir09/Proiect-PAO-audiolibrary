@@ -1,4 +1,4 @@
-package audiolibrary;
+package audiolibrary.song;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

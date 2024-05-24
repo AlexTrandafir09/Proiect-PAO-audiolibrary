@@ -1,10 +1,11 @@
-package audiolibrary;
+package audiolibrary.song;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
+
 @Getter
-public class Song {
+public class Song implements ISong {
     private int id;
     private String name;
     private String artist;
