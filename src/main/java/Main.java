@@ -1,22 +1,31 @@
-import authentification.functions.anon_functions.Anon_functions;
-import authentification.functions.user_functions.User_functions;
-import authentification.users.Roles;
-import authentification.users.User;
+import database.AuditDatabase;
+import database.UsersDatabase;
+import functions.admin_functions.Admin_functions;
+import functions.anon_functions.Anon_functions;
+import functions.user_functions.User_functions;
+import authentification.Roles;
+import authentification.User;
 
 public class Main {
     public static void main(String[] args) {
+        AuditDatabase.CreateAuditTable();
+        UsersDatabase.CreateUsersTable();
         User user= User.builder().role(Roles.anonim).build();
-        User temp;
         while(true)
             if(user.getRole()==Roles.anonim) {
-                temp = Anon_functions.functions(user);
-                if(temp!=null)
-                    user=temp;
+                user = Anon_functions.functions(user);
             }
             else if(user.getRole()==Roles.standard_user) {
-                temp = User_functions.functions(user);
-                if(temp!=null)
-                    user=temp;
+                user=User_functions.functions(user);
+            }
+            else if(user.getRole()==Roles.admin_user){
+                user=Admin_functions.functions(user);
             }
     }
 }
+
+
+
+
+// primul user din baza de date = admin
+// playlisturile trebuie sa fie salvate pt fiecare user

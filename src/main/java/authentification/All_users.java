@@ -1,9 +1,10 @@
-package authentification.users;
+package authentification;
 
+import database.AuditDatabase;
+import database.UsersDatabase;
 import exception.UserLoginException;
 import exception.UserRegistrationException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class All_users {
@@ -11,7 +12,7 @@ public class All_users {
     private List<User> userList;
 
     private All_users() {
-        userList = new ArrayList<>();
+        userList = UsersDatabase.getAllUsers();
     }
 
     public static All_users getInstance() {
@@ -27,29 +28,25 @@ public class All_users {
 
     public void addUser(User user) {
         userList.add(user);
+        AuditDatabase.Insert(user,"register",true);
+        UsersDatabase.Insert(user);
     }
 
-    public void removeUser(User user) {
-        userList.remove(user);
-    }
+
 
     public List<User> getAllUsers() {
         return userList;
     }
 
-    public boolean checkUserRegistration(User user) throws UserRegistrationException {
+    public void checkUserRegistration(User user) throws UserRegistrationException {
         for(User u : userList)
-            if(u.getUser().equals(user.getUser())) {
+            if(u.getUser().equals(user.getUser()))
                 throw new UserRegistrationException();
-            }
-        return true;
+
     }
-    public User checkUserLogin(User user) throws UserLoginException {
+    public User checkUserLogin(String username,String password) throws UserLoginException {
         for(User u : userList)
-            if(u.getUser().equals(user.getUser()) && !u.getPassword().equals(user.getPassword())) {
-                throw new UserLoginException();
-            }
-            else if(u.getUser().equals(user.getUser()) && u.getPassword().equals(user.getPassword())) {
+            if(u.getUser().equals(username) && u.getPassword().equals(password)) {
                 return u;
             }
         throw new UserLoginException();

@@ -1,4 +1,4 @@
-package authentification.users;
+package authentification;
 
 public enum Roles {
     anonim,
