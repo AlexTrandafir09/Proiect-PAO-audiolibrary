@@ -1,7 +1,7 @@
 package functions.admin_functions;
 
-import audiolibrary.AllSongs;
-import audiolibrary.Song;
+import audiolibrary.allSongs.AllSongs;
+import audiolibrary.song.Song;
 import authentification.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,12 +50,12 @@ public class CreateSong {
             songs.add(song);
             mapper.writeValue(file, songs);
             System.out.println("Song added successfully!");
-            AuditDatabase.Insert(user, "create song", true);
+            AuditDatabase.insert(user, "create song", true);
             return user;
 
         }
         catch (SongAlreadyCreatedException| IOException e) {
-            AuditDatabase.Insert(user, "Create song."+e.getMessage(), false);
+            AuditDatabase.insert(user, "Create song."+e.getMessage(), false);
             System.out.println(e.getMessage());
             return user;
         }

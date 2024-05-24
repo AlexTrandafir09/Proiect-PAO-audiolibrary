@@ -1,6 +1,6 @@
 package authentification;
 
-import audiolibrary.Playlist;
+import audiolibrary.playlist.Playlist;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

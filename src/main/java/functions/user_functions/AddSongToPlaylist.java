@@ -1,8 +1,8 @@
 package functions.user_functions;
 
-import audiolibrary.AllSongs;
-import audiolibrary.Playlist;
-import audiolibrary.Song;
+import audiolibrary.allSongs.AllSongs;
+import audiolibrary.playlist.Playlist;
+import audiolibrary.song.Song;
 import authentification.User;
 import database.AuditDatabase;
 import exception.NonexistentSongException;
@@ -60,10 +60,10 @@ public class AddSongToPlaylist {
                     }
                 }
 
-                AuditDatabase.Insert(user, "add song to playlist", true);
+                AuditDatabase.insert(user, "add song to playlist", true);
                 return user;
         } catch (NonexistentSongException | PlaylistNotExistentException | SongsAlreadyIsInPlaylistException e) {
-            AuditDatabase.Insert(user, "add song to playlist", false);
+            AuditDatabase.insert(user, "add song to playlist", false);
             System.out.println(e.getMessage());
             return user;
         }

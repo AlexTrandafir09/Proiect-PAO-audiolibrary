@@ -1,7 +1,7 @@
 package functions.user_functions;
 
-import audiolibrary.Playlist;
-import audiolibrary.Song;
+import audiolibrary.playlist.Playlist;
+import audiolibrary.song.Song;
 
 import java.util.List;
 import java.util.Scanner;

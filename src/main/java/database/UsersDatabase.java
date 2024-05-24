@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsersDatabase {
-    public static void CreateUsersTable() {
+    public static void create() {
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PAO-PROIECT", "user", "1234")) {
             try (Statement statement = connection.createStatement()) {
                 String UsersTable = """
@@ -29,7 +29,7 @@ public class UsersDatabase {
         }
     }
 
-    public static void Insert(User user) {
+    public static void insert(User user) {
         String user_name = user.getUser();
         String password = user.getPassword();
         String role;
@@ -62,7 +62,7 @@ public class UsersDatabase {
     }
 
 
-    public static List<User> getAllUsers() {
+    public static List<User> getUsers() {
         List<User> userList = new ArrayList<>();
 
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PAO-PROIECT", "user", "1234")) {
@@ -87,7 +87,7 @@ public class UsersDatabase {
         return userList;
     }
 
-    public static void updateUserRoleToAdmin(int userId) {
+    public static void updateRole(int userId) {
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PAO-PROIECT", "user", "1234")) {
             String updateStatement = "UPDATE users SET role = ? WHERE id = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(updateStatement)) {

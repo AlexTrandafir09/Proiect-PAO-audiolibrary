@@ -1,6 +1,6 @@
 package functions.user_functions;
 
-import audiolibrary.Playlist;
+import audiolibrary.playlist.Playlist;
 import authentification.User;
 import database.AuditDatabase;
 import exception.AlreadyExistingPlaylistException;
@@ -18,12 +18,12 @@ public class AddPlaylist {
                 if (playlist1.getName().equals(playlist.getName()))
                     throw new AlreadyExistingPlaylistException(name);
             user.getPlaylists().add(playlist);
-            AuditDatabase.Insert(user,"create playlist",true);
+            AuditDatabase.insert(user,"create playlist",true);
             System.out.println(name+" was created successfully!");
             return user;
         }
         catch (AlreadyExistingPlaylistException e){
-            AuditDatabase.Insert(user,"create playlist",false);
+            AuditDatabase.insert(user,"create playlist",false);
             System.out.println(e.getMessage());
             return user;
         }

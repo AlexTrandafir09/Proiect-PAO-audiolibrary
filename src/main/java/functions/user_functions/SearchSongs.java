@@ -1,7 +1,7 @@
 package functions.user_functions;
 
-import audiolibrary.AllSongs;
-import audiolibrary.Song;
+import audiolibrary.allSongs.AllSongs;
+import audiolibrary.song.Song;
 import authentification.User;
 import database.AuditDatabase;
 
@@ -18,6 +18,6 @@ public class SearchSongs {
 
         Pagination<Song> pagination = new Pagination<>(desired_songs, 5, Song::toString);
         pagination.display();
-        AuditDatabase.Insert(user,"search",true);
+        AuditDatabase.insert(user,"search",true);
     }
 }

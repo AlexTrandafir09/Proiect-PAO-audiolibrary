@@ -14,7 +14,7 @@ public class Promote {
             for (User user1 : all_users.getAllUsers())
                 if (user1.getUser().equals(values[1])) {
                     user1.setRole(Roles.admin_user);
-                    UsersDatabase.updateUserRoleToAdmin(user1.getId());
+                    UsersDatabase.updateRole(user1.getId());
                     exists = true;
                 }
             if (!exists)

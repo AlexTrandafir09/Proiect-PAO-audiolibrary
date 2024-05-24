@@ -5,7 +5,7 @@ import authentification.User;
 import java.sql.*;
 
 public class AuditDatabase {
-    public static void CreateAuditTable(){
+    public static void create(){
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PAO-PROIECT", "user", "1234")) {
             System.out.println("Connected to database....");
             try (Statement statement = connection.createStatement()) {
@@ -27,7 +27,7 @@ public class AuditDatabase {
             System.out.println(e.getMessage());
         }
     }
-    public static void Insert(User user, String command, Boolean success){
+    public static void insert(User user, String command, Boolean success){
         String user_name = user.getUser();
 
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PAO-PROIECT", "user", "1234")){
@@ -46,7 +46,7 @@ public class AuditDatabase {
         }
     }
 
-    public static void PrintData(String user) {
+    public static void print(String user) {
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PAO-PROIECT", "user", "1234")) {
             Statement statement = connection.createStatement();
             ResultSet resultSet;
