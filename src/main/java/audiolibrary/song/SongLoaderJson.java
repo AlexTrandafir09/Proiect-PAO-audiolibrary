@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SongLoaderJson {
+public final class SongLoaderJson {
 
     public static List<Song> loadSongs(String filePath) {
         List<Song> songList = new ArrayList<>();

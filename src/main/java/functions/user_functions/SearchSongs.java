@@ -6,7 +6,7 @@ import database.AuditDatabase;
 import java.util.List;
 import user.User;
 
-public class SearchSongs {
+public final class SearchSongs {
     public static void returned(User user, String command, String filter) {
         List<Song> desired_songs = null;
         AllSongs allSongs = AllSongs.getInstance();

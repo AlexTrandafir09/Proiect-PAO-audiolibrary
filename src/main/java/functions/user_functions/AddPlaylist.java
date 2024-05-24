@@ -6,7 +6,7 @@ import exception.AlreadyExistingPlaylistException;
 import java.util.ArrayList;
 import user.User;
 
-public class AddPlaylist {
+public final class AddPlaylist {
     public static User returned(String name, User user) {
         try {
             if (user.getPlaylists() == null) {

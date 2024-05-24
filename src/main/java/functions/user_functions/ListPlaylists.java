@@ -4,7 +4,7 @@ import audiolibrary.playlist.Playlist;
 import database.AuditDatabase;
 import user.User;
 
-public class ListPlaylists {
+public final class ListPlaylists {
     public static void returned(User user) {
         Pagination<Playlist> pagination =
                 new Pagination<>(user.getPlaylists(), 5, Playlist::toString);

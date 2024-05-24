@@ -10,7 +10,7 @@ import java.util.List;
 import lombok.Getter;
 
 @Getter
-public class Song implements ISong {
+public final class Song implements ISong {
     private static int lastId = getLastSongId();
     private int id;
     private String name;
@@ -82,8 +82,4 @@ public class Song implements ISong {
         return lastId;
     }
 
-    public static void main(String[] args) {
-        int lastSongId = getLastSongId();
-        System.out.println("Last song ID: " + lastSongId);
-    }
 }

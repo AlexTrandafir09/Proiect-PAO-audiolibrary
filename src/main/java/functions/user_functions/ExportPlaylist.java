@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class ExportPlaylist {
+public final class ExportPlaylist {
     public static void returned(String playlist_name,User user) {
         try {
             Playlist playlist = user.checkPlaylistbyName(playlist_name);

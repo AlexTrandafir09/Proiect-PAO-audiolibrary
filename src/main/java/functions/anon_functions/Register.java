@@ -5,7 +5,7 @@ import exception.UserRegistrationException;
 import user.All_users;
 import user.User;
 
-public class Register {
+public final class Register {
     public static User returned(User user, String name, String password) {
         User new_user = User.builder().user(name).password(password).build();
         All_users users = All_users.getInstance();

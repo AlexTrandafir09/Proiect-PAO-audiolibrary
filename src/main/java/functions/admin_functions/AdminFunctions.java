@@ -6,7 +6,7 @@ import functions.BaseFunctions;
 import functions.user_functions.UserFunctions;
 import user.User;
 
-public class AdminFunctions extends UserFunctions {
+public final class AdminFunctions extends UserFunctions {
 
     public static User functions(User user, String[] values) {
         User temp = BaseFunctions.common(user, values, new AdminFunctions());

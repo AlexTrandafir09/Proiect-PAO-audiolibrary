@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import user.User;
 
-public class AddSongToPlaylist {
+public final class AddSongToPlaylist {
 
     public static User returned(String[] values, User user) {
         AllSongs allSongs = AllSongs.getInstance();

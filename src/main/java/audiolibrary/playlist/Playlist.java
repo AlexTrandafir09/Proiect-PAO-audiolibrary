@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class Playlist implements IPlaylist {
+public final class Playlist implements IPlaylist {
     private static int lastId = 0;
     private int id;
     private String name;

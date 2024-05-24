@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Function;
 import user.User;
 
-public class AuditDatabase {
+public final class AuditDatabase {
     public static void create() {
         try (Connection connection =
                 DriverManager.getConnection(

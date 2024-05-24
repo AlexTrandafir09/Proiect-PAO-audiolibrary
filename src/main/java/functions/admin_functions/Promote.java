@@ -6,7 +6,7 @@ import user.All_users;
 import user.Roles;
 import user.User;
 
-public class Promote {
+public final class Promote {
     public static User returned(String[] values, User user) {
         try {
             boolean exists = false;

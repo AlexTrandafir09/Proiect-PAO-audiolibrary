@@ -6,7 +6,7 @@ import java.util.List;
 import user.Roles;
 import user.User;
 
-public class UsersDatabase {
+public final class UsersDatabase {
     public static void create() {
         try (Connection connection =
                 DriverManager.getConnection(

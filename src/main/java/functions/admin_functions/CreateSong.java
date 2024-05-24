@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import user.User;
 
-public class CreateSong {
+public final class CreateSong {
     private static final String JSON_FILE_PATH =
             "C:\\Users\\trand\\IdeaProjects\\Proiect-PAO-audiolibrary\\src\\main\\r"
                     + "esources\\songs.json";
@@ -35,7 +35,8 @@ public class CreateSong {
 
             File file = new File(JSON_FILE_PATH);
             if (file.exists()) {
-                songs = mapper.readValue(file, new TypeReference<List<Song>>() {});
+                songs = mapper.readValue(file, new TypeReference<>() {
+                });
             }
 
             songs.add(song);

@@ -7,7 +7,7 @@ import java.util.List;
 import lombok.Getter;
 
 @Getter
-public class AllSongs implements IAllSongs {
+public final class AllSongs implements IAllSongs {
     private static AllSongs instance = null;
     private List<Song> songs;
 

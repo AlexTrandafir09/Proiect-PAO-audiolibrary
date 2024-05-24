@@ -5,7 +5,7 @@ import exception.InvalidCommandUsageException;
 import exception.UnknownCommandException;
 import user.User;
 
-public class AnonFunctions {
+public final class AnonFunctions {
     public static User functions(User user, String[] values) {
         int choice = getChoice(values);
         switch (choice) {

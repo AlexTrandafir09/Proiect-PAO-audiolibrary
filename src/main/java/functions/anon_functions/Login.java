@@ -5,7 +5,7 @@ import exception.UserLoginException;
 import user.All_users;
 import user.User;
 
-public class Login {
+public final class Login {
     public static User returned(User user, String username, String password) {
         try {
             All_users users = All_users.getInstance();

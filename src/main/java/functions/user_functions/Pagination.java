@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.function.Function;
 
-public class Pagination<T> {
+public final class Pagination<T> {
 
     private final List<T> items;
     private final int itemsPerPage;

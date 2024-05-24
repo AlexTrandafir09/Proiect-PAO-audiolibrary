@@ -1,4 +1,5 @@
 import command.Command;
+import command.ListCommands;
 import database.AuditDatabase;
 import database.UsersDatabase;
 import functions.admin_functions.AdminFunctions;
@@ -12,6 +13,7 @@ public class Main {
     public static void main(String[] args) {
         AuditDatabase.create();
         UsersDatabase.create();
+        ListCommands.print();
         User user = User.builder().role(Roles.anonim).build();
 
         while (true) {
