@@ -2,19 +2,20 @@ package audiolibrary.allSongs;
 
 import audiolibrary.song.Song;
 import audiolibrary.song.SongLoaderJson;
-import lombok.Getter;
-
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
 
 @Getter
-
 public class AllSongs implements IAllSongs {
     private static AllSongs instance = null;
     private List<Song> songs;
 
     private AllSongs() {
-        songs = SongLoaderJson.loadSongs("C:\\Users\\trand\\IdeaProjects\\Proiect-PAO-audiolibrary\\src\\main\\resources\\songs.json");
+        songs =
+                SongLoaderJson.loadSongs(
+                        "C:\\Users\\trand\\IdeaProjects\\Proiect-PAO-audiolibrary\\src\\main\\r"
+                                + "esources\\songs.json");
     }
 
     public static AllSongs getInstance() {
@@ -23,7 +24,6 @@ public class AllSongs implements IAllSongs {
         }
         return instance;
     }
-
 
     public void addSong(Song song) {
         songs.add(song);
@@ -38,13 +38,10 @@ public class AllSongs implements IAllSongs {
         return null;
     }
 
-
-
-
     public List<Song> getSongsByTitle(String title) {
         List<Song> matchedSongs = new ArrayList<>();
         for (Song song : songs) {
-            if (song.getName().contains(title)) {
+            if (song.getName().startsWith(title)) {
                 matchedSongs.add(song);
             }
         }
@@ -54,15 +51,18 @@ public class AllSongs implements IAllSongs {
     public List<Song> getSongsByAuthor(String author) {
         List<Song> matchedSongs = new ArrayList<>();
         for (Song song : songs) {
-            if (song.getArtist().contains(author)) {
+            if (song.getArtist().startsWith(author)) {
                 matchedSongs.add(song);
             }
         }
         return matchedSongs;
     }
+
     public boolean checkCreation(Song song) {
-        for(Song song1: this.getSongs()){
-            if(song1.getId() == song.getId() || (song1.getName().equals(song.getName()) && song1.getArtist().equals(song.getArtist()))){
+        for (Song song1 : this.getSongs()) {
+            if (song1.getId() == song.getId()
+                    || (song1.getName().equals(song.getName())
+                            && song1.getArtist().equals(song.getArtist()))) {
                 return true;
             }
         }

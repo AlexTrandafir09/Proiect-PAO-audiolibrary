@@ -1,7 +1,6 @@
 package audiolibrary.allSongs;
 
 import audiolibrary.song.Song;
-
 import java.util.List;
 
 public interface IAllSongs {

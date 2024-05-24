@@ -1,7 +1,6 @@
 package audiolibrary.song;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,9 +14,13 @@ public class SongLoaderJson {
             ObjectMapper objectMapper = new ObjectMapper();
             Song[] songDataArray = objectMapper.readValue(new File(filePath), Song[].class);
 
-
             for (Song songData : songDataArray) {
-                Song song = new Song(songData.getId(), songData.getName(), songData.getArtist(), songData.getLaunchYear());
+                Song song =
+                        new Song(
+                                songData.getId(),
+                                songData.getName(),
+                                songData.getArtist(),
+                                songData.getLaunchYear());
                 songList.add(song);
             }
         } catch (IOException e) {

@@ -62,6 +62,9 @@
                             <reflowLongStrings>true</reflowLongStrings>
                             <formatJavadoc>false</formatJavadoc>
                         </googleJavaFormat>
+                        <excludes>
+                            <exclude>src/main/java/functions/user_functions/ExportPlaylist.java</exclude>
+                        </excludes>
                     </java>
                 </configuration>
                 <executions>
@@ -75,5 +78,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>

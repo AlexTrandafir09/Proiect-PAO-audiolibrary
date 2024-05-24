@@ -1,7 +1,7 @@
 package exception;
 
-public class UserNotExistentException extends Exception{
+public class UserNotExistentException extends Exception {
     public UserNotExistentException() {
-        super("User not existent");
+        super("Specified user does not exist!");
     }
 }

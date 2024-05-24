@@ -2,7 +2,7 @@ package functions.user_functions;
 
 import audiolibrary.playlist.Playlist;
 import audiolibrary.song.Song;
-import authentification.User;
+import user.User;
 import com.opencsv.CSVWriter;
 import database.AuditDatabase;
 import exception.PlaylistNotExistentException;
@@ -16,15 +16,16 @@ public class ExportPlaylist {
     public static void returned(String playlist_name,User user) {
         try {
             Playlist playlist = user.checkPlaylistbyName(playlist_name);
-            if (playlist != null)
+            if (playlist == null)
                 throw new PlaylistNotExistentException();
 
             LocalDate currentDate = LocalDate.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
             String formattedDate = currentDate.format(formatter);
-            String path = "C:\\Users\\trand\\IdeaProjects\\Proiect-PAO-audiolibrary\\target\\generated-sources\\";
-            String file_name = path + "export_" + user.getUser() + "_" + playlist.getName() + "_" + formattedDate + ".csv";
-            FileWriter fileWriter = new FileWriter(file_name);
+            String path;
+            path = "C:\\Users\\trand\\IdeaProjects\\Proiect-PAO-audiolibrary\\target\\generated-sources\\export_" + user.getUser() + "_" + playlist.getName() + "_" + formattedDate + ".csv";
+
+            FileWriter fileWriter = new FileWriter(path);
             CSVWriter csvWriter = new CSVWriter(fileWriter);
             for (Song song : playlist.getSongs()) {
                 String[] csvLine = song.toStringCsv().split(",");

@@ -2,7 +2,6 @@ package functions.user_functions;
 
 import audiolibrary.playlist.Playlist;
 import audiolibrary.song.Song;
-
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Function;
@@ -32,7 +31,14 @@ public class Pagination<T> {
         while (true) {
             int start = (currentPage - 1) * itemsPerPage;
             int end = Math.min(start + itemsPerPage, items.size());
-            System.out.println("Page " + currentPage + " out of " + totalPages + " (" + itemsPerPage + " items per page): ");
+            System.out.println(
+                    "Page "
+                            + currentPage
+                            + " out of "
+                            + totalPages
+                            + " ("
+                            + itemsPerPage
+                            + " items per page): ");
 
             for (int i = start; i < end; i++) {
                 System.out.println((i + 1) + ". " + itemDisplayFunction.apply(items.get(i)));
@@ -44,16 +50,17 @@ public class Pagination<T> {
 
             System.out.println("To return the next page, enter the appropriate command:");
 
-            String expectedCommand,expectedCommand1;
-            if (items.get(0) instanceof Song) {
-                expectedCommand="search id "+(currentPage+1);
+            String expectedCommand, expectedCommand1;
+            if (items.getFirst() instanceof Song) {
+                expectedCommand = "search id " + (currentPage + 1);
                 expectedCommand1 = "search name " + (currentPage + 1);
                 System.out.println("search name " + (currentPage + 1));
-            } else if (items.get(0) instanceof Playlist) {
+            } else if (items.getFirst() instanceof Playlist) {
                 expectedCommand = "list playlists " + (currentPage + 1);
                 expectedCommand1 = null;
                 System.out.println("list playlists " + (currentPage + 1));
-            } else {
+            }
+            else {
                 break;
             }
 

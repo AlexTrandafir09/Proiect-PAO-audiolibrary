@@ -1,13 +1,13 @@
 package functions.admin_functions;
 
-import authentification.All_users;
-import authentification.Roles;
-import authentification.User;
+import user.All_users;
+import user.Roles;
+import user.User;
 import database.UsersDatabase;
 import exception.UserNotExistentException;
 
 public class Promote {
-    public static User returned(String[] values,User user) {
+    public static User returned(String[] values, User user) {
         try {
             boolean exists = false;
             All_users all_users = All_users.getInstance();
@@ -17,14 +17,11 @@ public class Promote {
                     UsersDatabase.updateRole(user1.getId());
                     exists = true;
                 }
-            if (!exists)
-                throw new UserNotExistentException();
+            if (!exists) throw new UserNotExistentException();
             return user;
-        }
-        catch (UserNotExistentException e) {
+        } catch (UserNotExistentException e) {
             System.out.println(e.getMessage());
             return user;
         }
-
     }
 }

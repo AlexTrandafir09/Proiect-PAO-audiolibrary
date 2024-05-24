@@ -1,13 +1,10 @@
 package audiolibrary.playlist;
 
-
 import audiolibrary.song.Song;
-import lombok.Builder;
-import lombok.Getter;
-
 import java.util.ArrayList;
 import java.util.List;
-
+import lombok.Builder;
+import lombok.Getter;
 
 @Getter
 @Builder
@@ -20,7 +17,6 @@ public class Playlist implements IPlaylist {
     public static PlaylistBuilder builder() {
         return new PlaylistBuilder();
     }
-
 
     public static class PlaylistBuilder {
         private int id = ++lastId;
@@ -36,6 +32,6 @@ public class Playlist implements IPlaylist {
     }
 
     public String toString() {
-        return this.getName()+ " [ID: " + this.getId() + "]";
+        return this.getName() + " [ID: " + this.getId() + "]";
     }
 }
