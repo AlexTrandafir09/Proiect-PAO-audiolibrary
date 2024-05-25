@@ -1,16 +1,17 @@
 package user;
 
 import audiolibrary.playlist.Playlist;
-import java.util.ArrayList;
-import java.util.List;
+import audiolibrary.playlist.ReadPlaylists;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Builder
+import java.util.List;
+
 @Getter
 @Setter
+@Builder
 @ToString(of = {"id", "user", "role"})
 public class User {
     private static int lastId = 0;
@@ -20,14 +21,21 @@ public class User {
     private Roles role;
     private List<Playlist> playlists;
 
-    public static UserBuilder builder() {
-        return new UserBuilder();
-    }
 
-    public static class UserBuilder {
-        private int id = ++lastId;
-        private Roles role = Roles.standard_user;
-        private List<Playlist> playlists = new ArrayList<>();
+    public User(int id, String user, String password, Roles role) {
+        this.id = id;
+        this.user = user;
+        this.password = password;
+        this.role = role;
+        this.playlists = ReadPlaylists.returned(this);
+    }
+    @Builder
+    public User(int id, String user, String password, Roles role, List<Playlist> playlists) {
+        this.id = id;
+        this.user = user;
+        this.password = password;
+        this.role = role;
+        this.playlists = (playlists != null) ? playlists : ReadPlaylists.returned(this);
     }
 
     public Playlist checkPlaylistbyName(String name) {
@@ -45,4 +53,8 @@ public class User {
         }
         return null;
     }
+
+
+
+
 }

@@ -6,16 +6,18 @@ import audiolibrary.song.Song;
 import database.AuditDatabase;
 import exception.NonexistentSongException;
 import exception.PlaylistNotExistentException;
-import exception.SongsAlreadyIsInPlaylistException;
-import java.util.Arrays;
-import java.util.List;
 import user.User;
 
+import java.io.*;
+import java.util.Arrays;
+import java.util.List;
+
 public final class AddSongToPlaylist {
+    private static final String path = "C:\\Users\\trand\\IdeaProjects\\Proiect-PAO-audiolibrary\\src\\main\\resources\\playlists.txt";
 
     public static User returned(String[] values, User user) {
         AllSongs allSongs = AllSongs.getInstance();
-        List<String> songs_ids = Arrays.stream(values).skip(3).toList();
+        List<String> songsIds = Arrays.asList(values).subList(3, values.length);
         Playlist targetPlaylist = null;
         try {
             Integer playlistId = null;
@@ -40,37 +42,66 @@ public final class AddSongToPlaylist {
                 throw new PlaylistNotExistentException();
             }
         } catch (PlaylistNotExistentException e) {
-            AuditDatabase.insert(user, "add song to playlist", false);
+            AuditDatabase.insert(user, "add song to playlist " + e.getMessage(), false);
             System.out.println(e.getMessage());
             return user;
-        } finally {
-            for (String identifier : songs_ids) {
-                int songId = Integer.parseInt(identifier);
-                Song temp = allSongs.getSongBySongId(songId);
-                try {
-                    if (temp != null) {
-                        if (!targetPlaylist.checkSong(temp)) {
-                            targetPlaylist.addSong(temp);
-                            System.out.println(
-                                    "Added "
-                                            + temp.getName()
-                                            + " by "
-                                            + temp.getArtist()
-                                            + " to "
-                                            + targetPlaylist.getName());
+        }
+        finally {
+            try {
+                File file = new File(path);
+                File tempFile = new File(path + ".tmp");
+
+                try (BufferedReader reader = new BufferedReader(new FileReader(file));
+                     BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+                    String lineToRemove = user.getId() + "/" + targetPlaylist.getId() + "/";
+                    String currentLine;
+
+                    while ((currentLine = reader.readLine()) != null) {
+                        if (currentLine.startsWith(lineToRemove)) {
+                            StringBuilder line = new StringBuilder(currentLine);
+                            for (String songId : songsIds) {
+                                int id = Integer.parseInt(songId);
+                                Song song = allSongs.getSongBySongId(id);
+                                if (song != null) {
+                                    if (!targetPlaylist.checkSong(song)) {
+                                        line.append(songId).append("/");
+                                        targetPlaylist.addSong(song);
+                                        System.out.println(
+                                                "Added "
+                                                        + song.getName()
+                                                        + " by "
+                                                        + song.getArtist()
+                                                        + " to "
+                                                        + targetPlaylist.getName());
+                                    } else System.out.println("Song " + song.getName() + " by " + song.getArtist() + " is already part of " + targetPlaylist.getName());
+
+                                } else throw new NonexistentSongException(id);
+
+                            }
+                            writer.write(line.toString());
+                            writer.newLine();
                         } else {
-                            throw new SongsAlreadyIsInPlaylistException(
-                                    temp.getName(), temp.getArtist(), targetPlaylist.getName());
+                            writer.write(currentLine);
+                            writer.newLine();
                         }
-                    } else {
-                        throw new NonexistentSongException(songId);
                     }
-                } catch (SongsAlreadyIsInPlaylistException | NonexistentSongException e) {
-                    System.out.println(e.getMessage());
-                    AuditDatabase.insert(user, "add song to playlist", false);
                 }
+
+                if (!file.delete()) {
+                    System.out.println("Could not delete original file.");
+                }
+
+                if (!tempFile.renameTo(file)) {
+                    System.out.println("Could not rename temp file.");
+                }
+
+                AuditDatabase.insert(user, "add song to playlist", true);
+
+            } catch (IOException | NonexistentSongException e) {
+                System.out.println(e.getMessage());
             }
-            AuditDatabase.insert(user, "add song to playlist", true);
+
         }
         return user;
     }
